@@ -1,22 +1,50 @@
-# Citizen AI – Intelligent Citizen Engagement Platform
+# 🤖 Citizen AI – Intelligent Citizen Engagement Platform
 
-Citizen AI is a Generative AI-powered platform designed to enhance citizen interaction with government services. Built using Flask, IBM Cloud services, and simple NLP, it features:
+This project is developed as part of the Generative AI Internship using IBM Cloud. Citizen AI is an intelligent platform designed to improve citizen engagement using AI technologies.
 
-- ✅ Real-Time AI Chat Assistant (simulated IBM Granite model)
-- ✅ Feedback collection + Sentiment Analysis (Positive / Negative / Neutral)
-- ✅ Dynamic Dashboard with visualization (Chart.js)
+## 🌟 Features
+- 🧠 AI Chatbot using IBM Watson Assistant
+- 💬 Sentiment Analysis from citizen feedback
+- 📊 Admin Dashboard for insights
+- 🌐 Hosted using Render
+- 📁 Full documentation and demo included
 
-## 🔧 How to Run
-1. Install requirements:
+---
 
-2. Run the app:
+## 🗂️ Folder Structure
 
-3. Open browser:
-- Chat: http://127.0.0.1:5000/
-- Feedback: http://127.0.0.1:5000/feedback
-- Dashboard: http://127.0.0.1:5000/dashboard
+Internship/
+├── 📁 Demo video/ # Contains the recorded project demo
+├── 📁 Documents/ # Includes all 15 documentation files
+└── 📁 Scripts/ # Backend code and logic (Flask app)
 
-## 📁 Project Structure
-- `app.py`: Main Flask backend
-- `templates/`: HTML templates
-- `data/feedback.csv`: Stores user feedback and sentiment
+## 🎬 Demo Video
+👉 [Click to Watch](.\citizen-ai\Demo video)
+
+---
+
+## 🌐 Live Demo
+Deployed at: [https://citizen-ai-sb8l.onrender.com](https://citizen-ai-sb8l.onrender.com)
+
+---
+
+## 🧰 Tech Stack
+- Flask (Python)
+- IBM Watson Assistant
+- IBM Granite
+- Render (Deployment)
+- HTML, CSS, JS (Frontend)
+
+---
+
+## 📄 Documentation
+Check the [Documents](./Documents/) folder for all project files, reports, and system design.
+
+---
+
+## 👤 Author
+**Mohammad Abid Raza**  
+Generative AI Virtual Internship  
+GitHub: [abidraza-17](https://github.com/abidraza-17)
+
+---
