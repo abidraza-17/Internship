@@ -119,11 +119,19 @@ def ask_granite_model(prompt):
             if state in prompt.lower():
                 return f"The Chief Minister of {state.title()} is {cm_lookup[state]}."
             
+    lower_prompt = prompt.lower().strip()
+    
+    fallback_questions = [
+        "who made you", "who created you", "who developed you"
+    ]
+
+    if any(q in lower_prompt for q in fallback_questions):
+                return "I was developed by Mohammad Abid as part of the Citizen AI project. 😊"
 
         # Hardcoded developer identity fallback
-        lower_prompt = prompt.lower().strip()
-    if any(q in lower_prompt for q in ["who made you", "who developed you", "who created you"]):
-        return "I was developed by Mohammad Abid as part of the Citizen AI project. 😊"
+    #     lower_prompt = prompt.lower().strip()
+    # if any(q in lower_prompt for q in ["who made you", "who developed you", "who created you"]):
+    #     return "I was developed by Mohammad Abid as part of the Citizen AI project. 😊"
 
     # system_prompt = (
     #     "You are Citizen AI, an intelligent assistant helping Indian citizens with government-related queries. "
