@@ -121,12 +121,9 @@ def ask_granite_model(prompt):
             
 
         # Hardcoded developer identity fallback
-    creator_phrases = [
-        "who created you", "who developed you", "your developer",
-        "who built you", "your creator", "who made you"
-    ]
-    if any(phrase in prompt.lower() for phrase in creator_phrases):
-        return "I was developed by Mohammad Abid Raza!"
+        lower_prompt = prompt.lower().strip()
+    if any(q in lower_prompt for q in ["who made you", "who developed you", "who created you"]):
+        return "I was developed by Mohammad Abid as part of the Citizen AI project. 😊"
 
     # system_prompt = (
     #     "You are Citizen AI, an intelligent assistant helping Indian citizens with government-related queries. "
