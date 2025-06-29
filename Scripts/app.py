@@ -106,12 +106,52 @@ def ask_granite_model(prompt):
         "Content-Type": "application/json",
         "Authorization": f"Bearer {token}"
     }
+    cm_lookup = {
+    "andhra pradesh": "N. Chandrababu Naidu",
+    "uttar pradesh": "Yogi Adityanath",
+     "tamil nadu": "M. K. Stalin",
+        "maharashtra": "Eknath Shinde",
+        "delhi": "Arvind Kejriwal"
+}
 
+    if "cm of" in prompt.lower():
+        for state in cm_lookup:
+            if state in prompt.lower():
+                return f"The Chief Minister of {state.title()} is {cm_lookup[state]}."
+            
+
+        # Hardcoded developer identity fallback
+    creator_phrases = [
+        "who created you", "who developed you", "your developer",
+        "who built you", "your creator", "who made you"
+    ]
+    if any(phrase in prompt.lower() for phrase in creator_phrases):
+        return "I was developed by Mohammad Abid Raza!"
+
+    # system_prompt = (
+    #     "You are Citizen AI, an intelligent assistant helping Indian citizens with government-related queries. "
+    #     "Provide accurate, polite, and clear answers in a helpful tone. Only talk about government topics like Aadhar, passport, "
+    #     "complaints, elections, documents, and services. Don’t reply to casual or off-topic messages. Do not act like a user."
+    # )
+#     system_prompt = (
+#     "You are Citizen AI — a trusted government helpdesk assistant for Indian citizens.\n"
+#     "Your job is to provide helpful, accurate, and simple responses to questions about:\n"
+#     "- Public services (Aadhar, PAN, passport)\n"
+#     "- Government schemes (PMAY, PM-Kisan, etc.)\n"
+#     "- Civic issues (electricity, roads, voter ID, etc.)\n"
+#     "- State and central services\n\n"
+#     "If a question is unclear or unrelated to government, respond politely:\n"
+#     "'I'm sorry, I can only assist with Indian government-related services and policies.'\n\n"
+#     "Always use polite and supportive language. Avoid vague replies or apologies unless absolutely necessary.\n"
+# )
     system_prompt = (
-        "You are Citizen AI, an intelligent assistant helping Indian citizens with government-related queries. "
-        "Provide accurate, polite, and clear answers in a helpful tone. Only talk about government topics like Aadhar, passport, "
-        "complaints, elections, documents, and services. Don’t reply to casual or off-topic messages. Do not act like a user."
-    )
+    "You are Citizen AI — a helpful virtual assistant designed to answer questions about Indian governance, development, public services, economics, and related citizen topics.\n\n"
+    "Your job is to provide clear, factual, and polite answers to users. When a user asks something complex (e.g., about GDP or development), try to provide an informed response — even if you can't be 100% accurate.\n\n"
+    "If something is outside your scope (e.g., celebrity gossip, jokes), politely say: 'I'm here to help with citizen services and public knowledge.'\n\n"
+    "Use simple language. Stay helpful, not evasive."
+)
+
+
 
     full_prompt = f"{system_prompt}\n\nCitizen: {prompt}\nCitizen AI:"
 
@@ -119,9 +159,15 @@ def ask_granite_model(prompt):
         "model_id": "ibm/granite-13b-instruct-v2",
         "project_id": "54964ddf-77ab-4c70-8e35-f402829f3e83",
         "input": full_prompt,
+        # "parameters": {
+        #     "decoding_method": "greedy",
+        #     "max_new_tokens": 150
+        # }
         "parameters": {
-            "decoding_method": "greedy",
-            "max_new_tokens": 150
+        "decoding_method": "greedy",
+        "max_new_tokens": 150,
+        "temperature": 0.5,
+        "repetition_penalty": 1.1
         }
     }
 
@@ -130,6 +176,7 @@ def ask_granite_model(prompt):
         return response.json()["results"][0]["generated_text"]
     else:
         return f"API Error: {response.status_code} - {response.text}"
+    
 
 if __name__ == '__main__':
     app.run(debug=True)
